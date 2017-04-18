@@ -41,9 +41,27 @@ const typeDefs = `
         exceptionsGrandChildLength: Int
     }
     
+    type Test {
+        _id: ID!
+        project: Project
+        report: Report
+        level: Int
+        name: String
+        status: String
+        description: String
+        startTime: String
+        endTime: String
+        bdd: Boolean
+        childNodesLength: Int
+        duration: Int
+        categorized: Boolean
+    }
+    
     type Query {
         getAllProjects: [Project]
         getAllReports: [Report]
+        getAllTests: [Test]
+        getAllParentTestsByProjectId(projectId: String): [Test]
     }
 `;
 
