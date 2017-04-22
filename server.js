@@ -2,6 +2,7 @@ import express from 'express';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import { config } from './config';
 import { schema } from './src/schema';
@@ -15,6 +16,7 @@ mongoose.connect(MONGO_URI)
     .catch((error) => {console.log(`Error in DB Connection: ${error}`)});
 
 const server = express();
+server.use('*', cors({ origin: 'http://localhost:3000' }));
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({
     schema
